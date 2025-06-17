@@ -3,11 +3,11 @@
  * @returns string[]
  */
 
-function helper(maze, r, c, path, ans, visited)
+function helper(maze, r, c, path, ans)
 {
     let n = maze.length
 
-    if (r < 0 || c < 0 || r >= n || c >= n || maze[r][c] === 0 || visited[r][c] === true)
+    if (r < 0 || c < 0 || r >= n || c >= n || maze[r][c] === 0 || maze[r][c] === -1)
     {
         return
     }
@@ -18,22 +18,21 @@ function helper(maze, r, c, path, ans, visited)
         return
     }
 
-
-    visited[r][c] = true
-
+    maze[r][c] = -1
+    
     //Down
-    helper(maze, r + 1, c, path + "D", ans, visited)
-
+    helper(maze, r + 1, c, path + "D", ans)
+    
     //Up
-    helper(maze, r - 1, c, path + "U", ans, visited)
-
+    helper(maze, r - 1, c, path + "U", ans)
+    
     //Left
-    helper(maze, r, c - 1, path + "L", ans, visited)
-
+    helper(maze, r, c - 1, path + "L", ans)
+    
     //Right
-    helper(maze, r, c + 1, path + "R", ans, visited)
-    visited[r][c] = false
-
+    helper(maze, r, c + 1, path + "R", ans)
+    
+    maze[r][c] = 1
 }
 
 function ratInMaze(maze)
@@ -42,10 +41,7 @@ function ratInMaze(maze)
     let ans = []
     let path = ""
 
-    let visited = maze.map(row => row.map(() => false))
-
-
-    helper(maze, 0, 0, path, ans, visited)
+    helper(maze, 0, 0, path, ans)
     return ans
 }
 
