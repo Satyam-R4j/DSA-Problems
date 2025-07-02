@@ -47,9 +47,35 @@ class LinkedList
         console.log(result);
     }
 
-    delete(head)
+    delete(val)
     {
-        let current = 
+        if (!this.head)
+        {
+            console.log("List is empty!!");
+            return
+        }
+
+        if (this.head.value === val)
+        {
+            this.head = this.head.next
+            return
+        }
+
+        let prev = null
+        let current = this.head
+        while (current && current.value !== val)
+        {
+            prev = current
+            current = current.next
+        }
+
+        if (!current)
+        {
+            console.log("Value is not found in list");
+            return
+        }
+
+        prev.next = current.next
     }
 }
 
@@ -58,6 +84,8 @@ list.append(1)
 list.append(2)
 list.append(3)
 list.append(4)
+list.print()
+list.delete(2)
 list.print()
 
 
