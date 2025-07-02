@@ -77,6 +77,26 @@ class LinkedList
 
         prev.next = current.next
     }
+
+    reverse()
+    {
+        if (!this.head)
+        {
+            console.log("List is empty!!");
+            return
+        }
+        let prev = null
+        let curr = this.head
+        let next = null
+        while (curr !== null)
+        {
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        }
+        this.head = prev
+    }
 }
 
 const list = new LinkedList()
@@ -85,7 +105,7 @@ list.append(2)
 list.append(3)
 list.append(4)
 list.print()
-list.delete(2)
+list.reverse()
 list.print()
 
 
