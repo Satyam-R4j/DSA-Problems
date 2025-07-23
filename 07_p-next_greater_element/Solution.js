@@ -30,12 +30,12 @@ class Stack
 
         if (this.isEmpty())
         {
-            print("Stack is empty!!")
+            console.log("Stack is empty!!")
             return
         }
         else
         {
-            return this.stack[this.else.size - 1]
+            return this.stack[this.stack.length - 1]
         }
     }
 
@@ -56,14 +56,25 @@ class Stack
     }
 }
 
-let stc = new Stack()
-stc.push(2)
-stc.push(2)
-stc.push(2)
+let arr = [6, 8, 0, 1, 3]
+let stack = new Stack()
+let ans = new Array(arr.length)
+for (let i = arr.length - 1; i >= 0; i--)
+{
+    while (!stack.isEmpty() &&arr[i] >= stack.top())
+    {
+        stack.pop()
+    }
+    if (stack.isEmpty())
+    {
+        ans[i] = -1
+    }
+    else
+    {
+        ans[i] = stack.top()
+    }
 
-stc.print()
+    stack.push(arr[i])
+}
 
-
-
-size = stc.size()
-console.log(size);
+console.log(ans);
