@@ -30,7 +30,7 @@ class Stack
 
         if (this.isEmpty())
         {
-            console.log("Stack is empty!!")
+            print("Stack is empty!!")
             return
         }
         else
@@ -52,21 +52,23 @@ class Stack
     print()
     {
         console.log(this.stack.join(' '));
+
     }
 }
 
 let arr = [6, 8, 0, 1, 3]
 let stack = new Stack()
 let ans = new Array(arr.length)
-for (let i = arr.length - 1; i >= 0; i--)
+
+for (let i = 0; i < arr.length; i++)
 {
-    while (!stack.isEmpty() &&arr[i] >= stack.top())
+    while (stack.size() > 0 && stack.top() >= arr[i])
     {
         stack.pop()
     }
     if (stack.isEmpty())
     {
-        ans[i] = -1
+        ans[i] = -1;
     }
     else
     {
@@ -77,3 +79,6 @@ for (let i = arr.length - 1; i >= 0; i--)
 }
 
 console.log(ans);
+
+
+

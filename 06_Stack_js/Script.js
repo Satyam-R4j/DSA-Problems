@@ -20,22 +20,20 @@ class Stack
         }
         else
         {
-
             return this.stack.pop()
         }
     }
 
     top()
     {
-
         if (this.isEmpty())
         {
-            print("Stack is empty!!")
+            console.log("Stack is empty!!")
             return
         }
         else
         {
-            return this.stack[this.else.size - 1]
+            return this.stack[this.stack.length - 1]
         }
     }
 
