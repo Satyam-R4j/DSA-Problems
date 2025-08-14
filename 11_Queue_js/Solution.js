@@ -35,21 +35,23 @@ class Queue
         if (this.isEmpty())
         {
             console.log("List is empty !!")
-            return
+            return null
         }
-         this.head = this.head.next
-         if(this.head === null)
-         {
+        const val = this.head.val
+        this.head = this.head.next
+        if (this.head === null)
+        {
             this.tail = null
-         }
+        }
+        return val
     }
 
     front()
     {
-        if(this.isEmpty())
+        if (this.isEmpty())
         {
             console.log("LL is empty !!")
-            return -1
+            return null
         }
         return this.head.val
     }
