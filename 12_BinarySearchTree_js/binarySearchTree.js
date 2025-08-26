@@ -88,6 +88,27 @@ class BinarySearchTree {
             }
         }
     }
+
+    height(node = this.root) {
+        if (node === null) return 0;
+        let leftHeight = this.height(node.left);
+        let rightHeight = this.height(node.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    countNode(node = this.root) {
+        if (node === null) return 0;
+        let leftCount = this.countNode(node.left);
+        let rightCount = this.countNode(node.right);
+        return leftCount + rightCount + 1;
+    }
+
+    sum(node = this.root) {
+        if (node === null) return 0;
+        let leftVal = this.sum(node.left);
+        let rightVal = this.sum(node.right);
+        return leftVal + rightVal + node.val;
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -96,5 +117,14 @@ bst.insert(5);
 bst.insert(15);
 bst.insert(7);
 
-bst.levelOrder();
-console.log(JSON.stringify(bst, null, 2));
+// bst.levelOrder();
+let height = bst.height();
+console.log("the height of tree is : ", height);
+
+let count = bst.countNode();
+console.log("The number of nodes is: ", count);
+
+let sum = bst.sum();
+console.log("The sum of nodes is : ", sum);
+
+// console.log(JSON.stringify(bst, null, 2));
