@@ -52,6 +52,38 @@ class BinarySearchTree {
         return null;
     }
 
+    minValNode(node)
+    {
+        let curr = node
+        while(curr.left !== null)
+        {
+            curr = curr.left
+        }
+        return curr
+    }
+
+    delete(val, node = this.root) {
+        if (!node) return null;
+
+        if (val < node.val) {
+            node.left = this.delete(val, node.left);
+        } else if (val > node.val) {
+            node.right = this.delete(val, node.right);
+        } else {
+            if (node.left === null && node.right === null) return null;
+            if (node.left === null) return node.right;
+            else if (node.right === null) return node.left;
+
+            let successor = this.minValNode(node.right);
+            node.val = successor.val;
+            node.right = this.delete(successor.val, node.right);
+        }
+        if (node === this.root) {
+            this.root = node;
+        }
+        return node;
+    }
+
     inOrder(node = this.root) {
         if (node === null) return null;
         this.inOrder(node.left);
@@ -115,7 +147,17 @@ let bst = new BinarySearchTree();
 bst.insert(10);
 bst.insert(5);
 bst.insert(15);
+let inorder = bst.inOrder();
+console.log(inorder);
 bst.insert(7);
+bst.insert(1);
+bst.insert(100);
+bst.insert(67);
+
+bst.delete(15)
+
+inorder = bst.inOrder();
+console.log(inorder);
 
 // bst.levelOrder();
 let height = bst.height();
