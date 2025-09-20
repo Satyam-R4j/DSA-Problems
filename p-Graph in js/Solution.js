@@ -25,6 +25,26 @@ class Graph {
             console.log(vertex, "->", this.adjList[vertex].join(", "));
         }
     }
+
+    BFS() {
+        let qu = [];
+        let vis = {};
+
+        let start = Object.keys(this.adjList)[0];
+        qu.push(start);
+        vis[start] = true;
+
+        while (qu.length > 0) {
+            let u = qu.shift();
+            console.log(u);
+            for (let v of this.adjList[u]) {
+                if (!vis[v]) {
+                    vis[v] = true;
+                    qu.push(v);
+                }
+            }
+        }
+    }
 }
 
 let g = new Graph();
@@ -39,6 +59,7 @@ g.addEdge(1, 3);
 g.addEdge(2, 3);
 g.addEdge(2, 4);
 
-g.printGraph()
+// g.printGraph();
+g.BFS();
 
-console.log(g.adjList);
+// console.log(g.adjList);
