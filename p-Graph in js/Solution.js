@@ -45,6 +45,17 @@ class Graph {
             }
         }
     }
+
+    DFS(u, vis = {}) {
+        console.log(u);
+        vis[u] = true;
+
+        for (let v of this.adjList[u]) {
+            if (!vis[v]) {
+                this.DFS(v, vis);
+            }
+        }
+    }
 }
 
 let g = new Graph();
@@ -60,6 +71,7 @@ g.addEdge(2, 3);
 g.addEdge(2, 4);
 
 // g.printGraph();
-g.BFS();
+// g.BFS();
+g.DFS(2);
 
 // console.log(g.adjList);
