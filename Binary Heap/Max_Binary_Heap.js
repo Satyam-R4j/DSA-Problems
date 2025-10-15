@@ -1,6 +1,6 @@
 class MaxBinaryHeap {
     constructor() {
-        this.value = [41, 39, 33, 18, 27, 12];
+        this.value = [];
     }
 
     insert(element) {
@@ -21,29 +21,63 @@ class MaxBinaryHeap {
         }
     }
 
-    extractMax(){
-        const max = this.value[0]
-        const end = this.value.pop()
-        this.value[0] = end
-        this.sindDown()
-        return max
+    extractMax() {
+        const max = this.value[0];
+        const end = this.value.pop();
+        if (this.value.length > 0) {
+            this.value[0] = end;
+            this.sinkDown();
+        }
+        return max;
     }
 
-    sindDown()
-    {
-        let idx = 0
-        const length = this.value.length
-        const element = this.value[0]
-        while(true)
-        {
-            let leftChildIdx = 2 * idx + 1
-            let rightChildIdx = 2 * idx + 2 
-        }
+    sinkDown() {
+        let idx = 0;
+        const length = this.value.length;
+        const element = this.value[0];
+        while (true) {
+            let leftChildIdx = 2 * idx + 1;
+            let rightChildIdx = 2 * idx + 2;
+            let leftChild, rightChild;
+            let swap = null;
 
+            if (leftChildIdx < length) {
+                leftChild = this.value[leftChildIdx];
+                if (leftChild > element) {
+                    swap = leftChildIdx;
+                }
+            }
+            if (rightChildIdx < length) {
+                rightChild = this.value[rightChildIdx];
+                if (
+                    (swap === null && rightChild > element) ||
+                    (swap !== null && rightChild > leftChild)
+                ) {
+                    swap = rightChildIdx;
+                }
+            }
+            if (swap === null) break;
+            this.value[idx] = this.value[swap];
+            this.value[swap] = element;
+            idx = swap;
+        }
     }
 }
 
 let heap = new MaxBinaryHeap();
+heap.insert(41);
+heap.insert(39);
+heap.insert(33);
+heap.insert(18);
+heap.insert(27);
+heap.insert(12);
 heap.insert(55);
-heap.insert(1)
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
+console.log(heap.extractMax());
 console.log(heap.value);
