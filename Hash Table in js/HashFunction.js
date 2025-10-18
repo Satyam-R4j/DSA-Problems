@@ -8,4 +8,4 @@ function hash(key, len) {
 }
 
 
-console.log(hash("Vikcy",9));
+console.log(hash("vicky",9));
