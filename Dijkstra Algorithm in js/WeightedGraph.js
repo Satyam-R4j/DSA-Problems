@@ -15,3 +15,4 @@ class WeightedGraph{
         this.adjList[vertex2].push({node:vertex1,weight})
     }
 }
+
